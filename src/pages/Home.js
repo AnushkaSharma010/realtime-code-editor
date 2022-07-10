@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { v4 as uuidV4 } from 'uuid';
+import { v4 as uuidV4 } from 'uuid'; //unique id generator
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
@@ -29,8 +29,9 @@ const Home = () => {
         });
     };
 
-    const handleInputEnter = (e) => {
+    const handleInputEnter = (e) => { //whenever we press enter key then also we need to navigate
         if (e.code === 'Enter') {
+            console.log('event', e.code);
             joinRoom();
         }
     };
@@ -39,8 +40,9 @@ const Home = () => {
             <div className="formWrapper">
                 <img
                     className="homePageLogo"
-                    src="/code-sync.png"
-                    alt="code-sync-logo"
+                    src="/logo (2).png"
+                    alt="logo" 
+
                 />
                 <h4 className="mainLabel">Paste invitation ROOM ID</h4>
                 <div className="inputGroup">
@@ -78,7 +80,7 @@ const Home = () => {
             <footer>
                 <h4>
                     Built with 💛 &nbsp; by &nbsp;
-                    <a href="https://github.com/codersgyan">Coder's Gyan</a>
+                    Anushka
                 </h4>
             </footer>
         </div>

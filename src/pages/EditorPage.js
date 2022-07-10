@@ -12,7 +12,7 @@ import {
 } from 'react-router-dom';
 
 const EditorPage = () => {
-    const socketRef = useRef(null);
+    const socketRef = useRef(null); //it is react hook, if data is render multiple tym so it is rerender only once
     const codeRef = useRef(null);
     const location = useLocation();
     const { roomId } = useParams();
@@ -21,7 +21,7 @@ const EditorPage = () => {
 
     useEffect(() => {
         const init = async () => {
-            socketRef.current = await initSocket();
+            socketRef.current = await initSocket(); //whenever we want to use useRef we have to use current
             socketRef.current.on('connect_error', (err) => handleErrors(err));
             socketRef.current.on('connect_failed', (err) => handleErrors(err));
 
@@ -33,7 +33,7 @@ const EditorPage = () => {
 
             socketRef.current.emit(ACTIONS.JOIN, {
                 roomId,
-                username: location.state?.username,
+                username: location.state?.username, //we use ? for nt showing error if value is not present or null
             });
 
             // Listening for joined event
@@ -66,7 +66,7 @@ const EditorPage = () => {
             );
         };
         init();
-        return () => {
+        return () => { //it is cleanup as there may be memoryleakage issue
             socketRef.current.disconnect();
             socketRef.current.off(ACTIONS.JOINED);
             socketRef.current.off(ACTIONS.DISCONNECTED);
@@ -98,7 +98,7 @@ const EditorPage = () => {
                     <div className="logo">
                         <img
                             className="logoImage"
-                            src="/code-sync.png"
+                            src="/logo (2).png"
                             alt="logo"
                         />
                     </div>
